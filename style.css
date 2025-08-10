@@ -417,3 +417,17 @@ body {
 .footer p {
   margin: 4px 0;
 }
+
+.invitation-subtitle {
+  font-style: italic;
+  margin: 15px 0;
+  line-height: 1.4;
+}
+
+.event-details {
+  margin-top: 20px;
+}
+
+.event-details p {
+  margin: 8px 0;
+}
