@@ -212,9 +212,9 @@ form.addEventListener("submit", (e) => {
   })
     .then(() => {
       // Avec no-cors, on ne peut pas lire la réponse, mais si on arrive ici, c'est envoyé
-      console.log("✅ Requête envoyée avec succès");
+      console.log("✅ Request sent successfully");
       confirmationMsg.textContent =
-        "✅ Merci, votre réponse a bien été enregistrée !";
+        "✅ Thank you, your response has been recorded!";
       confirmationMsg.style.color = "#2e7d32";
 
       // Reset du formulaire
@@ -226,8 +226,7 @@ form.addEventListener("submit", (e) => {
     .catch((error) => {
       console.error("❌ Erreur:", error);
       // Même en cas d'erreur avec no-cors, les données peuvent être reçues
-      confirmationMsg.textContent =
-        "✅ Données envoyées (vérifiez votre Google Sheet)";
+      confirmationMsg.textContent = "✅ Data sent (check your Google Sheet)";
       confirmationMsg.style.color = "#2e7d32";
 
       form.reset();
