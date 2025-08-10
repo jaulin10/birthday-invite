@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ange Eleonora's 1st Birthday 🎂</title>
+    <!-- Librairie pour générer le QR Code -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- 💌 Invitation -->
+    <div class="invitation">
+      <h1>🎉 First Birthday Party 🎉</h1>
+
+      <!-- Photo de l'enfant -->
+      <div class="photo-container">
+        <img
+          src="photo-enfant.jpg"
+          alt="Ange Eleonora's photo"
+          class="photo-enfant"
+        />
+        <div class="photo-decoration"></div>
+      </div>
+
+      <h2>
+        Our little princess <span class="name">Ange Eleonora</span> is blowing
+        out her <span class="age">first candle</span>!
+      </h2>
+
+      <p class="invitation-subtitle">
+        Come celebrate this special milestone with us.<br />
+        Already a year... how time flies! ✨
+      </p>
+
+      <div class="event-details">
+        <p><strong>📅 When:</strong> Saturday, September 13th, 2025</p>
+        <p><strong>📍 Where:</strong> 80 Ridge Road, Cambridge, ON</p>
+        <p><strong>🕐 Time:</strong> 2:00 PM - 5:00 PM</p>
+      </div>
+    </div>
+
+    <!-- 🎈 Ballons décoratifs -->
+    <div class="balloons">
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+    </div>
+
+    <!-- 🎊 Confettis -->
+    <canvas id="confetti"></canvas>
+
+    <!-- 🎟️ Formulaire RSVP -->
+    <section class="rsvp">
+      <h2>Please Confirm Your Attendance</h2>
+      <form id="rsvpForm">
+        <!-- Choix Présent/Absent -->
+        <label>Will you be attending?</label>
+        <div class="presence-choice">
+          <div class="radio-group">
+            <input
+              type="radio"
+              id="present"
+              name="presence"
+              value="present"
+              required
+            />
+            <label for="present">✅ Yes, I'll be there!</label>
+          </div>
+          <div class="radio-group">
+            <input
+              type="radio"
+              id="absent"
+              name="presence"
+              value="absent"
+              required
+            />
+            <label for="absent">❌ Sorry, can't make it</label>
+          </div>
+        </div>
+
+        <!-- Formulaire pour les présents -->
+        <div id="presentForm" class="hidden">
+          <label for="pere">Father's name:</label>
+          <input
+            type="text"
+            id="pere"
+            name="pere"
+            placeholder="Enter father's name"
+          />
+
+          <label for="mere">Mother's name:</label>
+          <input
+            type="text"
+            id="mere"
+            name="mere"
+            placeholder="Enter mother's name"
+          />
+
+          <label for="age0_2">Children aged 0-2 years:</label>
+          <input type="number" id="age0_2" name="age0_2" min="0" value="0" />
+
+          <label for="age2_5">Children aged 2-5 years:</label>
+          <input type="number" id="age2_5" name="age2_5" min="0" value="0" />
+
+          <label for="age5_10">Children aged 5-10 years:</label>
+          <input type="number" id="age5_10" name="age5_10" min="0" value="0" />
+        </div>
+
+        <!-- Formulaire pour les absents -->
+        <div id="absentForm" class="hidden">
+          <label for="raison">Reason for absence:</label>
+          <textarea
+            id="raison"
+            name="raison"
+            placeholder="Please let us know why you can't attend..."
+          ></textarea>
+
+          <!-- Section cadeau -->
+          <div class="gift-section">
+            <label>Would you still like to send a gift?</label>
+            <div class="gift-choice">
+              <div class="radio-group">
+                <input type="radio" id="giftYes" name="gift" value="yes" />
+                <label for="giftYes">🎁 Yes, I'd love to!</label>
+              </div>
+              <div class="radio-group">
+                <input type="radio" id="giftNo" name="gift" value="no" />
+                <label for="giftNo">❌ Not this time</label>
+              </div>
+            </div>
+
+            <div id="giftDetails" class="hidden">
+              <label for="giftType">Type or nature of the gift:</label>
+              <input
+                type="text"
+                id="giftType"
+                name="giftType"
+                placeholder="Ex: Toy, clothing, books, e-transfer..."
+              />
+            </div>
+          </div>
+        </div>
+
+        <button type="submit">Send Confirmation ✅</button>
+      </form>
+      <p id="confirmationMsg" class="hidden">Thank you for your response! 🎉</p>
+    </section>
+
+    <footer class="footer">
+      <h3>Ange Eleonora's 1st Birthday</h3>
+      <p>© 2025 Ange Eleonora. All Rights Reserved.</p>
+      <p>📍 80 Ridge Road, Cambridge, ON</p>
+      <p>📞 Contact: 437-366-5289</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
