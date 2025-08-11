@@ -14,8 +14,12 @@ presentRadio.addEventListener("change", function () {
   if (this.checked) {
     presentForm.classList.remove("hidden");
     absentForm.classList.add("hidden");
+    // Rendre les champs requis pour les présents
     document.getElementById("pere").setAttribute("required", "");
     document.getElementById("mere").setAttribute("required", "");
+    // Retirer les requis pour les absents
+    document.getElementById("pereAbsent").removeAttribute("required");
+    document.getElementById("mereAbsent").removeAttribute("required");
     document.getElementById("raison").removeAttribute("required");
     document.getElementById("giftType").removeAttribute("required");
   }
@@ -25,7 +29,11 @@ absentRadio.addEventListener("change", function () {
   if (this.checked) {
     absentForm.classList.remove("hidden");
     presentForm.classList.add("hidden");
+    // Rendre les champs requis pour les absents
+    document.getElementById("pereAbsent").setAttribute("required", "");
+    document.getElementById("mereAbsent").setAttribute("required", "");
     document.getElementById("raison").setAttribute("required", "");
+    // Retirer les requis pour les présents
     document.getElementById("pere").removeAttribute("required");
     document.getElementById("mere").removeAttribute("required");
   }
@@ -121,7 +129,7 @@ window.addEventListener("resize", resizeCanvas);
 
 // === Gestion du formulaire RSVP ===
 const scriptURL =
-  "https://script.google.com/macros/s/AKfycbzULiOpwBfh3SlkP4aYApj1fYnNt7SRNc0aq7UCxnmiWCJtV7HS--vS_kooERHDqWDWgw/exec";
+  "https://script.google.com/macros/s/AKfycbx7L0HpMaPTD1sm_m8bubhO_FYky2RdABbRCzlMQFVH5H7i_UgWbxAzzcOX1ckpaGyQrQ/exec";
 
 const form = document.getElementById("rsvpForm");
 const confirmationMsg = document.getElementById("confirmationMsg");
@@ -130,7 +138,7 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   // Message de chargement
-  confirmationMsg.textContent = "⏳ Envoi en cours...";
+  confirmationMsg.textContent = "⏳ Sending...";
   confirmationMsg.classList.remove("hidden");
   confirmationMsg.style.color = "#ff9500";
 
@@ -168,8 +176,8 @@ form.addEventListener("submit", (e) => {
 
     dataToSend = {
       presence: "absent",
-      pere: "",
-      mere: "",
+      pere: document.getElementById("pereAbsent").value.trim(), // Nouveaux champs pour absents
+      mere: document.getElementById("mereAbsent").value.trim(), // Nouveaux champs pour absents
       age0_2: "0",
       age2_5: "0",
       age5_10: "0",
@@ -204,15 +212,14 @@ form.addEventListener("submit", (e) => {
   // Envoyer la requête
   fetch(scriptURL, {
     method: "POST",
-    mode: "no-cors", // Important pour Google Apps Script
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: params.toString(),
   })
     .then(() => {
-      // Avec no-cors, on ne peut pas lire la réponse, mais si on arrive ici, c'est envoyé
-      console.log("✅ Request sent successfully");
+      console.log("✅ Requête envoyée avec succès");
       confirmationMsg.textContent =
         "✅ Thank you, your response has been recorded!";
       confirmationMsg.style.color = "#2e7d32";
@@ -225,7 +232,6 @@ form.addEventListener("submit", (e) => {
     })
     .catch((error) => {
       console.error("❌ Erreur:", error);
-      // Même en cas d'erreur avec no-cors, les données peuvent être reçues
       confirmationMsg.textContent = "✅ Data sent (check your Google Sheet)";
       confirmationMsg.style.color = "#2e7d32";
 
